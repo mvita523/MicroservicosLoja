@@ -16,3 +16,10 @@
 #select * from shipment;
 #select * from inventory;
 #select * from customers;
+
+#Testar se Kubernetes está ativo
+#kubectl get nodes
+#Criar um namespace para o projeto
+#kubectl create namespace microservices
+#Deploy no Kubernetes
+#kubectl apply -f k8s/ -n microservices
