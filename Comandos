@@ -1,2 +1,18 @@
-docker compose down
-docker compose up --build
+# Ligar o Docker
+#docker compose down
+#docker compose up --build
+
+#Acessar Banco de Dados
+#docker exec -it postgres-micro bash
+#psql -U postgres -d Banco
+#Banco=#
+#SELECT * FROM customers;
+#Para sair Digite: \q e de seguida exit
+#Nome das tabelas
+#select * from product;
+#select * from order_item;
+#select * from orders;
+#select * from orders_items;
+#select * from shipment;
+#select * from inventory;
+#select * from customers;
