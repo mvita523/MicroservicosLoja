@@ -1,0 +1,10 @@
+pt\estg\identity\service\CustomerService.class
+pt\estg\identity\Application.class
+pt\estg\identity\controller\IdentityController.class
+pt\estg\identity\entity\Customer.class
+pt\estg\identity\dto\CustomerDTO$CustomerDTOBuilder.class
+pt\estg\identity\security\JwtUtil.class
+pt\estg\identity\entity\Customer$CustomerBuilder.class
+pt\estg\identity\dto\CustomerDTO.class
+pt\estg\identity\repository\CustomerRepository.class
+pt\estg\identity\security\SecurityConfig.class

@@ -1,0 +1,8 @@
+C:\Users\Evita\Downloads\microservices_docker_ready\microservices_lombok_M\identity-service\src\main\java\pt\estg\identity\controller\IdentityController.java
+C:\Users\Evita\Downloads\microservices_docker_ready\microservices_lombok_M\identity-service\src\main\java\pt\estg\identity\Application.java
+C:\Users\Evita\Downloads\microservices_docker_ready\microservices_lombok_M\identity-service\src\main\java\pt\estg\identity\entity\Customer.java
+C:\Users\Evita\Downloads\microservices_docker_ready\microservices_lombok_M\identity-service\src\main\java\pt\estg\identity\repository\CustomerRepository.java
+C:\Users\Evita\Downloads\microservices_docker_ready\microservices_lombok_M\identity-service\src\main\java\pt\estg\identity\service\CustomerService.java
+C:\Users\Evita\Downloads\microservices_docker_ready\microservices_lombok_M\identity-service\src\main\java\pt\estg\identity\security\SecurityConfig.java
+C:\Users\Evita\Downloads\microservices_docker_ready\microservices_lombok_M\identity-service\src\main\java\pt\estg\identity\dto\CustomerDTO.java
+C:\Users\Evita\Downloads\microservices_docker_ready\microservices_lombok_M\identity-service\src\main\java\pt\estg\identity\security\JwtUtil.java

@@ -1,0 +1,87 @@
+version: '3.9'
+
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: postgres-micro
+    environment:
+      POSTGRES_DB: Banco
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - micro-net
+
+  identity-service:
+    build: ./identity-service
+    container_name: identity-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/Banco
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345
+      SERVER_PORT: 8080
+    ports:
+      - "8092:8080"     # host:container
+    depends_on:
+      - postgres
+    networks:
+      - micro-net
+
+  catalog-service:
+    build: ./catalog-service
+    container_name: catalog-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/Banco
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345
+      SERVER_PORT: 8081
+    ports:
+      - "8091:8081"
+    depends_on:
+      - postgres
+    networks:
+      - micro-net
+
+  notification-service:
+    build: ./notification-service
+    container_name: notification-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-micro:5432/Banco
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345
+      SERVER_PORT: 8083
+    ports:
+      - "8093:8083"
+    depends_on:
+      - postgres
+    networks:
+      - micro-net
+
+  order-service:
+    build: ./order-service
+    container_name: order-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/Banco
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345
+      SERVER_PORT: 8084
+    ports:
+      - "8094:8084"
+    depends_on:
+      - postgres
+      - identity-service
+      - catalog-service
+      - notification-service
+    networks:
+      - micro-net
+
+volumes:
+  pgdata:
+
+networks:
+  micro-net:
+    driver: bridge

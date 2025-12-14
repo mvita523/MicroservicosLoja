@@ -1,0 +1,5 @@
+pt\estg\notification\entity\Shipment$ShipmentBuilder.class
+pt\estg\notification\repository\ShipmentRepository.class
+pt\estg\notification\Application.class
+pt\estg\notification\entity\Shipment.class
+pt\estg\notification\controller\NotificationController.class

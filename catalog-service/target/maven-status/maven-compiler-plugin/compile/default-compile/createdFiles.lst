@@ -1,0 +1,12 @@
+pt\estg\catalog\dto\ProductDTO$ProductDTOBuilder.class
+pt\estg\catalog\entity\Product$ProductBuilder.class
+pt\estg\catalog\Application.class
+pt\estg\catalog\entity\Product.class
+pt\estg\catalog\entity\Inventory$InventoryBuilder.class
+pt\estg\catalog\dto\ProductDTO.class
+pt\estg\catalog\entity\Inventory.class
+pt\estg\catalog\repository\InventoryRepository.class
+pt\estg\catalog\dto\InventoryDTO$InventoryDTOBuilder.class
+pt\estg\catalog\controller\CatalogController.class
+pt\estg\catalog\dto\InventoryDTO.class
+pt\estg\catalog\repository\ProductRepository.class
