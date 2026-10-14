@@ -1,22 +1,64 @@
-Microservices project (Lombok + ModelMapper + PostgreSQL) - Full generated scaffold
-Properties: Java 19, Lombok 1.18.28
+# 🛒 Loja Online com Microserviços
 
-Modules:
-- identity-service (8080)
-- catalog-service (8081)
-- order-service (8082)
-- notification-service (8083)
+Backend de uma loja online dividido em **4 microserviços independentes**, cada um com a sua API REST. Corre em containers Docker e inclui ficheiros de deploy para Kubernetes.
 
-Prerequisites:
-- Java 19, Maven, Docker, Postgres running at host 'postgres' port 5432 (user postgres/postgres db microdb)
-  Example: docker run --name pg-micro -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=microdb -p 5432:5432 -d postgres:15
+> Projeto desenvolvido no Mestrado em Engenharia Informática (ESTG, Politécnico do Porto), na unidade curricular de Microserviços.
 
-Build:
-mvn -T 1C -pl identity-service,catalog-service,order-service,notification-service -am clean package
+## 🧩 Arquitetura
 
-Run jars (example):
-java -jar identity-service/target/identity-service-1.0.0.jar
+| Serviço | Porta | Responsabilidade |
+|---|---|---|
+| `identity-service` | 8080 | Registo de clientes e autenticação com **JWT** (Spring Security) |
+| `catalog-service` | 8081 | Produtos e stock (inventário) |
+| `order-service` | 8082 | Encomendas; comunica com os outros serviços via **WebClient** |
+| `notification-service` | 8083 | Envios e notificações de encomenda |
 
-Order of startup recommended: identity -> catalog -> notification -> order
+Todos os serviços usam **PostgreSQL** com Spring Data JPA, organizados em camadas: `controller` → `service` → `repository` → `entity`/`dto`.
 
-Test flow example is in README of the zip.
+```
+Cliente ──► identity-service  (login / JWT)
+        ──► catalog-service   (produtos, stock)
+        ──► order-service ──► catalog-service
+                         └──► notification-service
+                 │
+             PostgreSQL
+```
+
+## 🛠 Tecnologias
+
+Java · Spring Boot · Spring Security · JWT · Spring Data JPA · PostgreSQL · Maven · Lombok · ModelMapper · Docker / Docker Compose · Kubernetes
+
+## ▶️ Como executar
+
+**Com Docker Compose** (recomendado):
+
+```bash
+mvn clean package -DskipTests
+docker compose up --build
+```
+
+**Com Kubernetes:**
+
+```bash
+kubectl apply -f k8s/
+```
+
+Os comandos usados durante o desenvolvimento estão no ficheiro [`Comandos`](Comandos).
+
+## 🗂 Estrutura
+
+```
+├── identity-service/
+├── catalog-service/
+├── order-service/
+├── notification-service/
+├── k8s/                 # Manifests Kubernetes (um por serviço + PostgreSQL)
+├── docker-compose.yml
+└── pom.xml              # Projeto Maven multi-módulo
+```
+
+## 🔜 Próximos passos
+
+- Comunicação assíncrona entre serviços com RabbitMQ
+- API Gateway e Service Discovery (Spring Cloud)
+- Credenciais da base de dados em variáveis de ambiente / Secrets
